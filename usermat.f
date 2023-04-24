@@ -9,7 +9,6 @@ subroutine usermat(
 & Strain,dStrain, epsPl, prop, coords,
 & rotateM, defGrad_t, defGrad,
 & tsstif, epsZZ,
-- 16 -
 & var1, var2, var3, var4, var5,
 & var6, var7, var8)
 c*************************************************************************
@@ -67,7 +66,6 @@ c defGrad_t(dp,ar(3,3),i) Deformation gradient at time t
 c defGrad (dp,ar(3,3),i) Deformation gradient at time t+dt
 c
 c input output arguments
-- 17 -
 c ======================
 c stress (dp,ar(nTesn),io) stress
 c statev (dp,ar(nstatev),io) statev
@@ -125,7 +123,6 @@ INTEGER
 DOUBLE PRECISION
 & Time, dTime, Temp, dTemp,
 & sedEl, sedPl, epseq, epsZZ
-- 18 -
 DOUBLE PRECISION
 & stress (ncomp ), statev (nStatev),
 & dsdePl (ncomp,ncomp),
@@ -183,7 +180,6 @@ c posn (dp,sc ,l) Poiss's ratio
 c sigy0 (dp,sc ,l) initial yield stress
 c dsigdep (dp,sc ,l) plastic slope
 c twoG (dp,sc ,l) two time of shear moduli
-- 19 -
 c threeG (dp,sc ,l) three time of shear moduli
 c funcf (dp,sc ,l) nonlinear function to be solved
 c for dpleq
@@ -239,7 +235,6 @@ dsdeEl(2,4)=elast1*G(2)*G(4)+elast2*TWO*G(1)*G(4)
 dsdeEl(2,5)=elast1*G(2)*G(5)+elast2*TWO*G(1)*G(5)
 dsdeEl(2,6)=elast1*G(2)*G(6)+elast2*TWO*G(2)*G(6)
 dsdeEl(3,3)=(elast1+TWO*elast2)*G(3)*G(3)
-- 20 -
 dsdeEl(3,4)=elast1*G(3)*G(4)+elast2*TWO*G(5)*G(6)
 dsdeEl(3,5)=elast1*G(3)*G(5)+elast2*TWO*G(5)*G(3)
 dsdeEl(3,6)=elast1*G(3)*G(6)+elast2*TWO*G(6)*G(3)
@@ -297,7 +292,6 @@ oneOv3G = ONE / threeG
 qElOv3G = qEl * oneOv3G
 c *** initial guess of incremental equivalent plastic strain
 dpleq = (qEl - sigy) * oneOv3G
-- 21 -
 pleq = pleq_t + dpleq
 c
 c *** Newton-Raphosn procedure for return mapping iteration
@@ -355,7 +349,6 @@ DO i=1,ncomp
 DO j=1,ncomp
 JM(j,i) = ZERO
 END DO
-- 22 -
 END DO
 DO i=1,nDirect
 DO j=1,nDirect
